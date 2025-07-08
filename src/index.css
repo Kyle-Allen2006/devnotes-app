@@ -1,0 +1,17 @@
+/* index.css */
+
+body.light {
+  background-color: #f4f4f4;
+  color: #111;
+}
+
+body.dark {
+  background-color: #121212;
+  color: #fff;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}

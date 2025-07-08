@@ -6,43 +6,46 @@ function Notes() {
   const [project, setProject] = useState('General');
   const [projects, setProjects] = useState(['General']);
   const [newProject, setNewProject] = useState('');
+  const [theme, setTheme] = useState('light');
 
-  // Load notes, project, and projects list from localStorage
+  // Load from localStorage on first render
   useEffect(() => {
     const storedNotes = JSON.parse(localStorage.getItem('devnotes'));
-    if (storedNotes) setNotes(storedNotes);
-
     const storedProject = localStorage.getItem('devnotes-project');
-    if (storedProject) setProject(storedProject);
-
     const storedProjects = JSON.parse(localStorage.getItem('devnotes-projects'));
+    const storedTheme = localStorage.getItem('devnotes-theme');
+
+    if (storedNotes) setNotes(storedNotes);
+    if (storedProject) setProject(storedProject);
     if (storedProjects) setProjects(storedProjects);
+    if (storedTheme) setTheme(storedTheme);
   }, []);
 
-  // Save notes
+  // Save to localStorage when values change
   useEffect(() => {
     localStorage.setItem('devnotes', JSON.stringify(notes));
   }, [notes]);
 
-  // Save selected project
   useEffect(() => {
     localStorage.setItem('devnotes-project', project);
   }, [project]);
 
-  // Save list of projects
   useEffect(() => {
     localStorage.setItem('devnotes-projects', JSON.stringify(projects));
   }, [projects]);
 
+  useEffect(() => {
+    localStorage.setItem('devnotes-theme', theme);
+  }, [theme]);
+
+  // 🔧 Add class to <body> for full page theme styling
+  useEffect(() => {
+    document.body.className = theme === 'dark' ? 'dark' : 'light';
+  }, [theme]);
+
   const addNote = () => {
     if (text.trim() === '') return;
-
-    const newNote = {
-      id: Date.now(),
-      content: text,
-      project,
-    };
-
+    const newNote = { id: Date.now(), content: text, project };
     setNotes([newNote, ...notes]);
     setText('');
   };
@@ -61,16 +64,36 @@ function Notes() {
     setNewProject('');
   };
 
+  const toggleTheme = () => {
+    setTheme(theme === 'light' ? 'dark' : 'light');
+  };
+
+  const isDark = theme === 'dark';
+
   const styles = {
     container: {
       maxWidth: '600px',
       margin: '2rem auto',
       fontFamily: 'Segoe UI, sans-serif',
-      color: '#333',
+      color: isDark ? '#f1f1f1' : '#333',
+      backgroundColor: isDark ? '#121212' : '#ffffff',
+      padding: '1rem',
+      borderRadius: '8px',
+      boxShadow: isDark ? '0 0 10px rgba(255,255,255,0.1)' : '0 0 10px rgba(0,0,0,0.1)',
     },
     heading: {
       textAlign: 'center',
       marginBottom: '1rem',
+    },
+    toggleBtn: {
+      backgroundColor: isDark ? '#f1f1f1' : '#333',
+      color: isDark ? '#121212' : '#fff',
+      border: 'none',
+      padding: '0.4rem 0.75rem',
+      borderRadius: '4px',
+      cursor: 'pointer',
+      fontWeight: 'bold',
+      float: 'right',
     },
     projectInput: {
       display: 'flex',
@@ -83,6 +106,8 @@ function Notes() {
       fontSize: '1rem',
       border: '1px solid #ccc',
       borderRadius: '4px',
+      backgroundColor: isDark ? '#222' : '#fff',
+      color: isDark ? '#fff' : '#000',
     },
     button: {
       padding: '0.5rem 1rem',
@@ -102,10 +127,11 @@ function Notes() {
     },
     projectItem: {
       padding: '0.4rem 0.75rem',
-      backgroundColor: '#f0f0f0',
+      backgroundColor: isDark ? '#444' : '#f0f0f0',
+      color: isDark ? '#fff' : '#000',
       borderRadius: '4px',
       cursor: 'pointer',
-      border: '1px solid #ccc',
+      border: isDark ? '1px solid #555' : '1px solid #ccc',
     },
     activeProject: {
       backgroundColor: '#007bff',
@@ -121,13 +147,15 @@ function Notes() {
       border: '1px solid #ccc',
       resize: 'vertical',
       marginBottom: '0.5rem',
+      backgroundColor: isDark ? '#222' : '#fff',
+      color: isDark ? '#fff' : '#000',
     },
     noteList: {
       listStyle: 'none',
       padding: 0,
     },
     noteItem: {
-      background: '#f9f9f9',
+      background: isDark ? '#2a2a2a' : '#f9f9f9',
       padding: '0.75rem',
       border: '1px solid #ddd',
       borderRadius: '4px',
@@ -144,10 +172,18 @@ function Notes() {
       borderRadius: '4px',
       cursor: 'pointer',
     },
+    clearfix: {
+      clear: 'both',
+      marginBottom: '1rem',
+    },
   };
 
   return (
     <div style={styles.container}>
+      <button style={styles.toggleBtn} onClick={toggleTheme}>
+        {theme === 'light' ? '🌙 Dark Mode' : '☀️ Light Mode'}
+      </button>
+      <div style={styles.clearfix} />
       <h1 style={styles.heading}>🗒️ DevNotes</h1>
 
       <form onSubmit={addProject} style={styles.projectInput}>
