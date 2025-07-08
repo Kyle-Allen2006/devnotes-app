@@ -8,21 +8,26 @@ A lightweight React-based note-taking app built with Vite. Notes are stored loca
 
 ## Features
 
-- Create and delete personal notes
-- Data stored using `localStorage` (persists on refresh)
-- Responsive layout for mobile/desktop
-- Built using functional components and hooks
+- Create and manage multiple project spaces
+- Take project-specific notes
+- Delete notes individually
+- Light/Dark theme toggle with persistence
+- Fully front-end and deployable
 
 ---
 
 ## Technologies Used
 
-- React (with Hooks)
-- Vite
-- JavaScript
-- CSS-in-JS styling (inline styles)
+- React
+- JavaScript (ES6+)
+- HTML/CSS
+- LocalStorage (for data persistence)
+- Vite (for modern development/build)
 
 ---
+
+## Theme Support
+Latest update supports light/dark mode with full-page styling and persistent preferences.
 
 ## Getting Started
 
@@ -45,6 +50,7 @@ devnotes-app/
 ├── src/
 │   ├── App.jsx
 │   ├── Notes.jsx
+│   ├── index.css
 │   └── main.jsx
 ├── .gitignore
 ├── index.html
