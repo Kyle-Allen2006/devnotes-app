@@ -1,12 +1,64 @@
-# React + Vite
+# DevNotes App 🗒️
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A lightweight React-based note-taking app built with Vite. Notes are stored locally in the browser using `localStorage`, allowing you to persist data without a backend.
 
-Currently, two official plugins are available:
+> This is a portfolio project to demonstrate my frontend development capabilities using React and modern tools.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Create and delete personal notes
+- Data stored using `localStorage` (persists on refresh)
+- Responsive layout for mobile/desktop
+- Built using functional components and hooks
+
+---
+
+## Technologies Used
+
+- React (with Hooks)
+- Vite
+- JavaScript
+- CSS-in-JS styling (inline styles)
+
+---
+
+## Getting Started
+
+Clone and run locally:
+
+```bash
+git clone https://github.com/kyle-allen2006/devnotes-app.git
+
+cd devnotes-app
+
+npm install
+
+npm run dev
+
+
+## 📁 Folder Structure (Simplified)
+```
+devnotes-app/
+├── public/
+├── src/
+│   ├── App.jsx
+│   ├── Notes.jsx
+│   └── main.jsx
+├── .gitignore
+├── index.html
+├── package.json
+├── README.md
+└── vite.config.js
+```
+
+## About the Developer:
+
+Hello and welcome! I’m Kyle Allen, a passionate developer transitioning into software engineering after 16 years of experience in robotics and automation. I’m currently pursuing my Software Engineering degree at WGU while building real-world projects to strengthen my skills in modern web development.
+
+- Background in robotics, controls, industrial automation, and maintenance  
+- Current student at Western Governors University (WGU)  
+- Strong foundation in programming logic and problem solving  
+
+This app is part of my ongoing learning journey to strengthen my frontend skills using modern JavaScript tools like React and Vite.
